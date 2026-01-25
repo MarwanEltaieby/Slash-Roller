@@ -2,6 +2,7 @@
 
 
 #include "Item.h"
+#include "Slash_Roller/DebugMacros.h"
 
 // Sets default values
 AItem::AItem()
@@ -16,11 +17,13 @@ void AItem::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UWorld* world = GetWorld();
-	FVector itemLocation = GetActorLocation();
+	FVector startLocation = GetActorLocation();
+	FVector endLocation = startLocation + (FVector::ForwardVector * 1000);
 
-	DrawDebugSphere(world, itemLocation, 100.f, 24, FColor::Blue, false, 60.f);
-
+	DRAW_SPHERE(GetActorLocation());
+	DRAW_LINE(startLocation, endLocation);
+	DRAW_POINT(startLocation);
+	DRAW_POINT(endLocation);
 }
 
 // Called every frame
