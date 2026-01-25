@@ -17,13 +17,7 @@ void AItem::BeginPlay()
 {
 	Super::BeginPlay();
 
-	FVector startLocation = GetActorLocation();
-	FVector endLocation = startLocation + (FVector::ForwardVector * 1000);
-
-	DRAW_SPHERE(GetActorLocation());
-	DRAW_LINE(startLocation, endLocation);
-	DRAW_POINT(startLocation);
-	DRAW_POINT(endLocation);
+	AddActorWorldOffset(FVector(0.f, 0.f, 500.f));
 }
 
 // Called every frame
@@ -31,5 +25,17 @@ void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	AddActorWorldOffset(FVector(100.f, 0.f, 0.f) * DeltaTime);
+	AddActorWorldRotation(FRotator(0.f, 45.f, 0.f) * DeltaTime);
+	
+
+	// Debug Drawings
+	FVector startLocation = GetActorLocation();
+	FVector endLocation = startLocation + (GetActorForwardVector() * 500);
+
+	DRAW_SPHERE_SINGLE_FRAME(GetActorLocation());
+	DRAW_LINE_SINGLE_FRAME(startLocation, endLocation);
+	DRAW_POINT_SINGLE_FRAME(startLocation);
+	DRAW_POINT_SINGLE_FRAME(endLocation);
 }
 
