@@ -19,11 +19,17 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	UPROPERTY(BlueprintReadWrite)
-	FString myString;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float SinWaveAmplitude = 0.5f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float SinWaveSpeedMultiplier = 5.f;
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+private:
+	UPROPERTY(VisibleAnywhere)
+	float RunningTime;
 
 };

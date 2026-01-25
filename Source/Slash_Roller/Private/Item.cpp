@@ -24,10 +24,12 @@ void AItem::BeginPlay()
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
-	AddActorWorldOffset(FVector(100.f, 0.f, 0.f) * DeltaTime);
-	AddActorWorldRotation(FRotator(0.f, 45.f, 0.f) * DeltaTime);
 	
+	RunningTime += DeltaTime;
+	float DeltaZ = SinWaveAmplitude * FMath::Sin(RunningTime * SinWaveSpeedMultiplier);
+
+	AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
+	UE_LOG(LogTemp, Display, TEXT("DeltaZ: %f"), DeltaZ);
 
 	// Debug Drawings
 	FVector startLocation = GetActorLocation();
