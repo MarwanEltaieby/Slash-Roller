@@ -20,16 +20,22 @@ void AItem::BeginPlay()
 	AddActorWorldOffset(FVector(0.f, 0.f, 500.f));
 }
 
+float AItem::TransformedSin(float Amplitude, float SpeedMultiplier)
+{
+	return Amplitude * FMath::Sin(RunningTime * SpeedMultiplier);
+}
+
+float AItem::TransformedCos(float Amplitude, float SpeedMultiplier)
+{
+	return Amplitude * FMath::Cos(RunningTime * SpeedMultiplier);
+}
+
 // Called every frame
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	
-	RunningTime += DeltaTime;
-	float DeltaZ = SinWaveAmplitude * FMath::Sin(RunningTime * SinWaveSpeedMultiplier);
 
-	AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
-	UE_LOG(LogTemp, Display, TEXT("DeltaZ: %f"), DeltaZ);
+	RunningTime += DeltaTime;
 
 	// Debug Drawings
 	FVector startLocation = GetActorLocation();
