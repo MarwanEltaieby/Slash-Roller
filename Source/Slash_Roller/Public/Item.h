@@ -30,6 +30,11 @@ protected:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	float TransformedCos(float Amplitude, float SpeedMultiplier);
 
+	void RotateActor();
+
+	template<typename T>
+	T Avg(T First, T Second);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -38,4 +43,14 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	float RunningTime;
 
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* ItemMesh;
+
+	FRotator ObjectRotation;
 };
+
+template<typename T>
+inline T AItem::Avg(T First, T Second)
+{
+	return (First + Second) / 2;
+}
