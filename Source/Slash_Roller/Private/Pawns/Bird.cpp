@@ -7,6 +7,9 @@
 #include "Components/InputComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "GameFramework/SpringArmComponent.h"
+#include "Camera/CameraComponent.h"
+
 
 
 
@@ -23,8 +26,17 @@ ABird::ABird()
 
 	BirdMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("SkeletalMesh"));
 	BirdMesh->SetupAttachment(Capsule);
-	
+
+	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+	SpringArm->SetupAttachment(GetRootComponent());
+
+	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
+	Camera->SetupAttachment(SpringArm);
+
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
+
+	bUseControllerRotationPitch = true;
+	bUseControllerRotationYaw = true;
 	
 }
 
@@ -48,7 +60,24 @@ void ABird::BeginPlay()
 void ABird::ProcessMovement(const FInputActionValue& Value)
 {
 	FVector2D MoveValue = Value.Get<FVector2D>();
-	UE_LOG(LogTemp, Warning, TEXT("MoveValue X: %f, Y: %f"), MoveValue.X, MoveValue.Y);
+
+	AddMovementInput(GetActorForwardVector(), MoveValue.X, false);
+	AddMovementInput(GetActorRightVector(), MoveValue.Y, false);
+}
+
+void ABird::ProcessFlying(const FInputActionValue& Value)
+{
+	float FlyValue = Value.Get<float>();
+
+	AddMovementInput(GetActorUpVector(), FlyValue, false);
+}
+
+void ABird::ProcessRotation(const FInputActionValue& Value)
+{
+	FVector2D RotationValue = Value.Get<FVector2D>();
+
+	AddControllerPitchInput(-RotationValue.Y);
+	AddControllerYawInput(RotationValue.X);
 }
 
 // Called every frame
@@ -66,6 +95,8 @@ void ABird::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	if (UEnhancedInputComponent* EnhancedInput = CastChecked<UEnhancedInputComponent>(PlayerInputComponent))
 	{
 		EnhancedInput->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ABird::ProcessMovement);
+		EnhancedInput->BindAction(FlyAction, ETriggerEvent::Triggered, this, &ABird::ProcessFlying);
+		EnhancedInput->BindAction(RotateAction, ETriggerEvent::Triggered, this, &ABird::ProcessRotation);
 	}
 }
 

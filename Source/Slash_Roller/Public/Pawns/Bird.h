@@ -11,6 +11,9 @@ class UCapsuleComponent;
 class USkeletalMeshComponent;
 class UInputMappingContext;
 class UInputAction;
+class USpringArmComponent;
+class UCameraComponent;
+
 
 UCLASS()
 class SLASH_ROLLER_API ABird : public APawn
@@ -37,7 +40,17 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	UInputAction* MoveAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	UInputAction* FlyAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	UInputAction* RotateAction;
+
+	UPawnMovementComponent* MovementComponent;
+
 	void ProcessMovement(const FInputActionValue& Value);
+	void ProcessFlying(const FInputActionValue& Value);
+	void ProcessRotation(const FInputActionValue& Value);
 
 private:
 
@@ -46,4 +59,10 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	USkeletalMeshComponent* BirdMesh;
+
+	UPROPERTY(VisibleAnywhere)
+	USpringArmComponent* SpringArm;
+
+	UPROPERTY(VisibleAnywhere)
+	UCameraComponent* Camera;
 };
