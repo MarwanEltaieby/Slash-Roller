@@ -5,6 +5,7 @@
 #include "Slash_Roller/DebugMacros.h"
 #include "Components/SphereComponent.h"
 
+
 // Sets default values
 AItem::AItem()
 {
@@ -16,8 +17,6 @@ AItem::AItem()
 
 	SphereComponent = CreateDefaultSubobject<USphereComponent>(TEXT("Sphere Component"));
 	SphereComponent->SetupAttachment(GetRootComponent());
-
-	
 
 	ObjectRotation = FRotator(0, 180, 0);
 }
@@ -54,12 +53,12 @@ void AItem::RotateActor()
 
 void AItem::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Other Actor Begin Overlap: %s"), *OtherActor->GetName());
+
 }
 
 void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	UE_LOG(LogTemp, Warning, TEXT("Other Actor End Overlap: %s"), *OtherActor->GetName());
+
 }
 
 // Called every frame
@@ -69,6 +68,6 @@ void AItem::Tick(float DeltaTime)
 
 	RunningTime += DeltaTime;
 
-	RotateActor();
+	//RotateActor();
 }
 

@@ -53,6 +53,12 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UFUNCTION(BlueprintCallable)
+	void SetWeaponEquipped(bool Value);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	bool GetWeaponEquipped();
+
 private:
 
 	UPROPERTY(VisibleAnywhere)
@@ -60,5 +66,8 @@ private:
 
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* Camera;
+
+	UPROPERTY(VisibleAnywhere)
+	bool bWeaponEquipped = false;
 
 };

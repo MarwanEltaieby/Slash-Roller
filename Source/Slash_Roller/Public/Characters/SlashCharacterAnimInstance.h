@@ -30,4 +30,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Movement")
 	bool isJumping;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Movement")
+	bool isWeaponEquipped;
 };

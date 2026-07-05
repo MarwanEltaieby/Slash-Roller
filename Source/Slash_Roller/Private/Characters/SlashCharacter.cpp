@@ -104,3 +104,13 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 	}
 }
 
+void ASlashCharacter::SetWeaponEquipped(bool Value)
+{
+	bWeaponEquipped = Value;
+}
+
+bool ASlashCharacter::GetWeaponEquipped()
+{
+	return bWeaponEquipped;
+}
+
