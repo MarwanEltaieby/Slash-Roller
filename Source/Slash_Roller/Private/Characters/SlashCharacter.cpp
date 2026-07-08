@@ -11,6 +11,8 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Item.h"
+#include "Weapons/Weapon.h"
 
 // Sets default values
 ASlashCharacter::ASlashCharacter()
@@ -59,15 +61,6 @@ void ASlashCharacter::ProcessMovement(const FInputActionValue& Value)
 {
 	const FVector2D MovementVector = Value.Get<FVector2D>();
 
-	/*const FRotator Rotation = Controller->GetControlRotation();
-	const FRotator YawRotation(0.f, Rotation.Yaw, 0.f);
-
-	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
-
-	AddMovementInput(ForwardDirection, MovementVector.X);
-	AddMovementInput(RightDirection, MovementVector.Y);*/
-
 	const FRotator ControlRotation = GetControlRotation();
 	const FRotator YawRotation(0.f, ControlRotation.Yaw, 0.f);
 
@@ -91,6 +84,17 @@ void ASlashCharacter::ProcessJumping(const FInputActionValue& Value)
 	Jump();
 }
 
+void ASlashCharacter::Interact(const FInputActionValue& Value)
+{
+	if (AWeapon* Weapon = Cast<AWeapon>(Item))
+	{
+		Weapon->Equip(GetMesh(), FName("Right Hand Socket"));
+		CharacterState = ECharacterStates::ECS_EquippedOneHandedWeapon;
+	}
+}
+
+
+
 // Called to bind functionality to input
 void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -101,16 +105,7 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 		EnhancedInputComponent->BindAction(MovementAction, ETriggerEvent::Triggered, this, &ASlashCharacter::ProcessMovement);
 		EnhancedInputComponent->BindAction(RotateAction, ETriggerEvent::Triggered, this, &ASlashCharacter::ProcessRotating);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &ASlashCharacter::ProcessJumping);
+		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this, &ASlashCharacter::Interact);
 	}
-}
-
-void ASlashCharacter::SetWeaponEquipped(bool Value)
-{
-	bWeaponEquipped = Value;
-}
-
-bool ASlashCharacter::GetWeaponEquipped()
-{
-	return bWeaponEquipped;
 }
 

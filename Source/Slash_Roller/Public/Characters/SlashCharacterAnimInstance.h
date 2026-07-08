@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Animation/AnimInstance.h"
+#include "CharacterTypes.h"
 #include "SlashCharacterAnimInstance.generated.h"
 
 /**
@@ -32,5 +33,5 @@ public:
 	bool isJumping;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Movement")
-	bool isWeaponEquipped;
+	ECharacterStates CharacterState;
 };

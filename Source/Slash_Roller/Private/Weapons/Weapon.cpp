@@ -9,6 +9,11 @@ AWeapon::AWeapon()
 	PrimaryActorTick.bCanEverTick = true;
 }
 
+void AWeapon::Equip(USceneComponent* SceneComponent, FName SocketName)
+{
+	ItemMesh->AttachToComponent(SceneComponent, FAttachmentTransformRules::SnapToTargetNotIncludingScale, SocketName);
+}
+
 void AWeapon::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -25,16 +30,16 @@ void AWeapon::OnSphereBeginOverlap(UPrimitiveComponent* OverlappedComponent, AAc
 {
 	Super::OnSphereBeginOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
 
-	ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
+	//ASlashCharacter* SlashCharacter = Cast<ASlashCharacter>(OtherActor);
 
-	if (SlashCharacter)
-	{
-		//UE_LOG(LogTemp, Warning, TEXT("Overlapped!"));
-		PrimaryActorTick.bCanEverTick = false;
-		FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, true);
-		ItemMesh->AttachToComponent(SlashCharacter->GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, FName("Right Hand Socket"));
-		SlashCharacter->SetWeaponEquipped(true);
-	}
+	//if (SlashCharacter)
+	//{
+	//	UE_LOG(LogTemp, Warning, TEXT("Overlapped!"));
+	//	PrimaryActorTick.bCanEverTick = false;
+	//	FAttachmentTransformRules AttachmentRules(EAttachmentRule::SnapToTarget, true);
+	//	ItemMesh->AttachToComponent(SlashCharacter->GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, FName("Right Hand Socket"));
+	//	SlashCharacter->SetWeaponEquipped(true);
+	//}
 
 }
 

@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "CharacterTypes.h"
 #include "SlashCharacter.generated.h"
 
 class UInputMappingContext;
@@ -14,6 +15,7 @@ class USkeletalMeshComponent;
 class USpringArmComponent;
 class UCameraComponent;
 class USkeletalMeshComponent;
+class AItem;
 
 UCLASS()
 class SLASH_ROLLER_API ASlashCharacter : public ACharacter
@@ -40,11 +42,15 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	UInputAction* JumpAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	UInputAction* InteractAction;
+
 	UCharacterMovementComponent* CharacterMovementComponent;
 
 	void ProcessMovement(const FInputActionValue& Value);
 	void ProcessRotating(const FInputActionValue& Value);
 	void ProcessJumping(const FInputActionValue& Value);
+	void Interact(const FInputActionValue& Value);
 
 public:	
 	// Called every frame
@@ -52,12 +58,6 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
-	UFUNCTION(BlueprintCallable)
-	void SetWeaponEquipped(bool Value);
-
-	UFUNCTION(BlueprintCallable, BlueprintPure)
-	bool GetWeaponEquipped();
 
 private:
 
@@ -67,7 +67,19 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* Camera;
 
-	UPROPERTY(VisibleAnywhere)
-	bool bWeaponEquipped = false;
+	UPROPERTY(VisibleInstanceOnly)
+	AItem* Item;
+	
+	ECharacterStates CharacterState = ECharacterStates::ECS_UnEquipped;
+
+public:
+
+	FORCEINLINE AItem* GetItem() const { return Item; }
+
+	FORCEINLINE void SetItem(AItem* Value) { Item = Value; }
+
+	FORCEINLINE ECharacterStates GetCharacterState() const { return CharacterState; }
+
+	FORCEINLINE void GetCharacterState(ECharacterStates Value) { CharacterState = Value; }
 
 };

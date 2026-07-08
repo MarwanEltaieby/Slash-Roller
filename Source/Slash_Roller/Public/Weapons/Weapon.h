@@ -16,6 +16,8 @@ class SLASH_ROLLER_API AWeapon : public AItem
 
 public:
 	AWeapon();
+
+	void Equip(USceneComponent* SceneComponent, FName SocketName);
 	
 protected:
 

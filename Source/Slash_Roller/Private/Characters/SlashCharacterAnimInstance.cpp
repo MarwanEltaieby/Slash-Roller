@@ -24,6 +24,6 @@ void USlashCharacterAnimInstance::NativeUpdateAnimation(float DeltaTime)
 	{
 		GroundSpeed = UKismetMathLibrary::VSizeXY(CharacterMovementComponent->Velocity);
 		isJumping = CharacterMovementComponent->IsFalling();
-		isWeaponEquipped = SlashCharacter->GetWeaponEquipped();
+		CharacterState = SlashCharacter->GetCharacterState();
 	}
 }
