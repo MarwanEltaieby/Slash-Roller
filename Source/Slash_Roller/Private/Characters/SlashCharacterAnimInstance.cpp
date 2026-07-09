@@ -25,5 +25,16 @@ void USlashCharacterAnimInstance::NativeUpdateAnimation(float DeltaTime)
 		GroundSpeed = UKismetMathLibrary::VSizeXY(CharacterMovementComponent->Velocity);
 		isJumping = CharacterMovementComponent->IsFalling();
 		CharacterState = SlashCharacter->GetCharacterState();
+		ActionState = SlashCharacter->GetActionState();
+	}
+}
+
+void USlashCharacterAnimInstance::SetActionState(EActionStates Value)
+{
+	if (SlashCharacter)
+	{
+		SlashCharacter->GetActionState(Value);
+		//SlashCharacter->ReEnableInput();
+		ActionState = Value;
 	}
 }

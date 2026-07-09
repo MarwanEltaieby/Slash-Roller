@@ -19,6 +19,9 @@ public:
 
 	virtual void NativeInitializeAnimation() override;
 	virtual void NativeUpdateAnimation(float DeltaTime) override;
+
+	UFUNCTION(BlueprintCallable)
+	void SetActionState(EActionStates Value);
 	
 	UPROPERTY(BlueprintReadOnly)
 	class ASlashCharacter* SlashCharacter;
@@ -34,4 +37,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Movement")
 	ECharacterStates CharacterState;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Movement")
+	EActionStates ActionState;
 };

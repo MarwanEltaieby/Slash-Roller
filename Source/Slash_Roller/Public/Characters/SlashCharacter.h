@@ -45,12 +45,19 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	UInputAction* InteractAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	UInputAction* AttackAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Montages")
+	UAnimMontage* AttackMontage;
+
 	UCharacterMovementComponent* CharacterMovementComponent;
 
 	void ProcessMovement(const FInputActionValue& Value);
 	void ProcessRotating(const FInputActionValue& Value);
 	void ProcessJumping(const FInputActionValue& Value);
 	void Interact(const FInputActionValue& Value);
+	void ProcessAttack(const FInputActionValue& Value);
 
 public:	
 	// Called every frame
@@ -58,6 +65,8 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	void ReEnableInput();
 
 private:
 
@@ -72,6 +81,10 @@ private:
 	
 	ECharacterStates CharacterState = ECharacterStates::ECS_UnEquipped;
 
+	EActionStates ActionState = EActionStates::EAS_UnOccupied;
+
+	APlayerController* PlayerController;
+
 public:
 
 	FORCEINLINE AItem* GetItem() const { return Item; }
@@ -81,5 +94,9 @@ public:
 	FORCEINLINE ECharacterStates GetCharacterState() const { return CharacterState; }
 
 	FORCEINLINE void GetCharacterState(ECharacterStates Value) { CharacterState = Value; }
+
+	FORCEINLINE EActionStates GetActionState() const { return ActionState; }
+
+	FORCEINLINE void GetActionState(EActionStates Value) { ActionState = Value; }
 
 };

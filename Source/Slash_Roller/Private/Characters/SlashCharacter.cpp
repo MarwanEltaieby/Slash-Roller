@@ -37,8 +37,8 @@ void ASlashCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
-
-	if (APlayerController* PlayerController = Cast<APlayerController>(GetController()))
+	PlayerController = Cast<APlayerController>(GetController());
+	if (PlayerController)
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
@@ -55,6 +55,15 @@ void ASlashCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	//UE_LOG(LogTemp, Warning, TEXT("%s"), AttackMontage->IsReadyForFinishDestroy() ? TEXT("True") : TEXT("False"));
+	//if (AttackMontage->IsReadyForFinishDestroy)
+	//{
+	//	EnableInput(PlayerController);
+	//}
+	//else
+	//{
+	//	DisableInput(PlayerController);
+	//}
 }
 
 void ASlashCharacter::ProcessMovement(const FInputActionValue& Value)
@@ -93,6 +102,28 @@ void ASlashCharacter::Interact(const FInputActionValue& Value)
 	}
 }
 
+void ASlashCharacter::ProcessAttack(const FInputActionValue& Value)
+{
+	bool AttackValue = Value.Get<bool>();
+
+	UE_LOG(LogTemp, Warning, TEXT("%s"), AttackValue ? TEXT("True") : TEXT("False"));
+	if (CharacterState == ECharacterStates::ECS_UnEquipped)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Character Does not Equip a weapon"));
+	}
+	else
+	{
+		if (ActionState == EActionStates::EAS_UnOccupied)
+		{
+			PlayAnimMontage(AttackMontage, 1.0f, FName("Attack1"));
+			ActionState = EActionStates::EAS_Attacking;
+			//DisableInput(PlayerController);
+			UE_LOG(LogTemp, Warning, TEXT("Attack!"));
+		}
+	}
+}
+
+
 
 
 // Called to bind functionality to input
@@ -106,6 +137,12 @@ void ASlashCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComp
 		EnhancedInputComponent->BindAction(RotateAction, ETriggerEvent::Triggered, this, &ASlashCharacter::ProcessRotating);
 		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &ASlashCharacter::ProcessJumping);
 		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this, &ASlashCharacter::Interact);
+		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Started, this, &ASlashCharacter::ProcessAttack);
 	}
+}
+
+void ASlashCharacter::ReEnableInput()
+{
+	EnableInput(PlayerController);
 }
 
