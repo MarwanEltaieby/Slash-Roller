@@ -76,8 +76,11 @@ void ASlashCharacter::ProcessMovement(const FInputActionValue& Value)
 	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
-	AddMovementInput(ForwardDirection, MovementVector.X);
-	AddMovementInput(RightDirection, MovementVector.Y);
+	if (ActionState == EActionStates::EAS_UnOccupied)
+	{
+		AddMovementInput(ForwardDirection, MovementVector.X);
+		AddMovementInput(RightDirection, MovementVector.Y);
+	}
 }
 
 void ASlashCharacter::ProcessRotating(const FInputActionValue& Value)
@@ -99,7 +102,36 @@ void ASlashCharacter::Interact(const FInputActionValue& Value)
 	{
 		Weapon->Equip(GetMesh(), FName("Right Hand Socket"));
 		CharacterState = ECharacterStates::ECS_EquippedOneHandedWeapon;
+		UE_LOG(LogTemp, Warning, TEXT("Equipping First Time"));
+		Item = nullptr;
+		EquipedWeapon = Weapon;
 	}
+	else {
+		if (CharacterState != ECharacterStates::ECS_UnEquipped && ActionState == EActionStates::EAS_UnOccupied && EquipMontage && EquipedWeapon)
+		{
+			PlayAnimMontage(EquipMontage, 1.0f, FName("Unequip"));
+			CharacterState = ECharacterStates::ECS_UnEquipped;
+			ActionState = EActionStates::EAS_Disarming;
+			UE_LOG(LogTemp, Warning, TEXT("UnEquipping"));
+		}
+		else if (CharacterState == ECharacterStates::ECS_UnEquipped && ActionState == EActionStates::EAS_UnOccupied && EquipMontage && EquipedWeapon)
+		{
+			PlayAnimMontage(EquipMontage, 1.0f, FName("Equip"));
+			CharacterState = ECharacterStates::ECS_EquippedOneHandedWeapon;
+			ActionState = EActionStates::EAS_Arming;
+			UE_LOG(LogTemp, Warning, TEXT("Equipping"));
+		}
+	}
+}
+
+void ASlashCharacter::DisarmWeapon()
+{
+	EquipedWeapon->AttachWeaponToSocket(GetMesh(), FName("Sheath"));
+}
+
+void ASlashCharacter::ArmWeapon()
+{
+	EquipedWeapon->AttachWeaponToSocket(GetMesh(), FName("Right Hand Socket"));
 }
 
 void ASlashCharacter::ProcessAttack(const FInputActionValue& Value)

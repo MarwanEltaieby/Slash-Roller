@@ -16,6 +16,7 @@ class USpringArmComponent;
 class UCameraComponent;
 class USkeletalMeshComponent;
 class AItem;
+class AWeapon;
 
 UCLASS()
 class SLASH_ROLLER_API ASlashCharacter : public ACharacter
@@ -51,6 +52,9 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Montages")
 	UAnimMontage* AttackMontage;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Montages")
+	UAnimMontage* EquipMontage;
+
 	UCharacterMovementComponent* CharacterMovementComponent;
 
 	void ProcessMovement(const FInputActionValue& Value);
@@ -58,6 +62,12 @@ protected:
 	void ProcessJumping(const FInputActionValue& Value);
 	void Interact(const FInputActionValue& Value);
 	void ProcessAttack(const FInputActionValue& Value);
+
+	UFUNCTION(BlueprintCallable)
+	void DisarmWeapon();
+
+	UFUNCTION(BlueprintCallable)
+	void ArmWeapon();
 
 public:	
 	// Called every frame
@@ -78,6 +88,9 @@ private:
 
 	UPROPERTY(VisibleInstanceOnly)
 	AItem* Item;
+
+	UPROPERTY(VisibleAnywhere, Category = "Weapon")
+	AWeapon* EquipedWeapon;
 	
 	ECharacterStates CharacterState = ECharacterStates::ECS_UnEquipped;
 

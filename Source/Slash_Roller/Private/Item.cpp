@@ -80,5 +80,10 @@ void AItem::Tick(float DeltaTime)
 	RunningTime += DeltaTime;
 
 	//RotateActor();
+	
+	if (ItemState == EItemState::EIS_Hovering)
+	{
+		AddActorWorldOffset(FVector(0.f, 0.f, TransformedSin(SinWaveAmplitude, SinWaveSpeedMultiplier)));
+	}
 }
 

@@ -17,8 +17,10 @@ class SLASH_ROLLER_API AWeapon : public AItem
 public:
 	AWeapon();
 
-	void Equip(USceneComponent* SceneComponent, FName SocketName);
-	
+    void Equip(USceneComponent *SceneComponent, FName SocketName);
+
+    void AttachWeaponToSocket(USceneComponent *SceneComponent, const FName &SocketName);
+
 protected:
 
 	virtual void Tick(float DeltaTime) override;

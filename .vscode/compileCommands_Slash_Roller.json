@@ -1,0 +1,122 @@
+[
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\DebugMacros.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\Private\\Characters\\SlashCharacter.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\Private\\Characters\\SlashCharacterAnimInstance.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\Private\\Item.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\Private\\Pawns\\Bird.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\Private\\Weapons\\Weapon.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\Public\\Characters\\CharacterTypes.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\Public\\Characters\\SlashCharacter.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\Public\\Characters\\SlashCharacterAnimInstance.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\Public\\Item.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\Public\\Pawns\\Bird.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\Public\\Weapons\\Weapon.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\Slash_Roller.Build.cs",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\Slash_Roller.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	},
+	{
+		"file": "D:\\Unreal Projects\\Slash-Roller\\Source\\Slash_Roller\\Slash_Roller.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\18\\Community\\VC\\Tools\\MSVC\\14.38.33130\\bin\\Hostx64\\x64\\cl.exe",
+			"@D:\\Unreal Projects\\Slash-Roller\\.vscode\\compileCommands_Slash_Roller\\Slash_Roller.1.rsp"
+		],
+		"directory": "D:\\UnrealEngine\\UE_5.5\\Engine\\Source"
+	}
+]

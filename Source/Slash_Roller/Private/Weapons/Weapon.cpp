@@ -3,6 +3,7 @@
 
 #include "Weapons/Weapon.h"
 #include "Slash_Roller/Public/Characters/SlashCharacter.h"
+#include "Components/SphereComponent.h"
 
 AWeapon::AWeapon()
 {
@@ -11,7 +12,18 @@ AWeapon::AWeapon()
 
 void AWeapon::Equip(USceneComponent* SceneComponent, FName SocketName)
 {
-	ItemMesh->AttachToComponent(SceneComponent, FAttachmentTransformRules::SnapToTargetNotIncludingScale, SocketName);
+    AttachWeaponToSocket(SceneComponent, SocketName);
+
+	if(SphereComponent)
+	{
+		SphereComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
+}
+
+void AWeapon::AttachWeaponToSocket(USceneComponent *SceneComponent, const FName &SocketName)
+{
+    ItemMesh->AttachToComponent(SceneComponent, FAttachmentTransformRules::SnapToTargetNotIncludingScale, SocketName);
+    ItemState = EItemState::EIS_Equipped;
 }
 
 void AWeapon::Tick(float DeltaTime)
